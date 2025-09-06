@@ -18,9 +18,15 @@ namespace Demodeck.Tenant.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            // Configure JWT (for admin operations)
-            var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
-            builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+            // Configure JWT Settings
+            var jwtSettings = new JwtSettings
+            {
+                SecretKey = builder.Configuration["JwtSettings:SecretKey"] ?? "DemodecklJwtSecretKey2024ForDevelopmentOnlyNeverUseInProduction",
+                Issuer = builder.Configuration["JwtSettings:Issuer"] ?? "Demodeck.Tenant.Api",
+                Audience = builder.Configuration["JwtSettings:Audience"] ?? "Demodeck.Tenant.Api.Users",
+                TokenLifetimeMinutes = int.Parse(builder.Configuration["JwtSettings:ExpiryInMinutes"] ?? "60")
+            };
+            builder.Services.AddSingleton(jwtSettings);
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -37,12 +43,16 @@ namespace Demodeck.Tenant.Api
                     };
                 });
 
-            // Register services
+            // Register repositories
             builder.Services.AddSingleton<ITenantRepository, InMemoryTenantRepository>();
-            builder.Services.AddSingleton<IRegionRepository, InMemoryRegionRepository>();
+            builder.Services.AddSingleton<IReleaseRepository, InMemoryReleaseRepository>();
+            builder.Services.AddSingleton<IManagerRepository, InMemoryManagerRepository>();
+            
+            // Register services
             builder.Services.AddScoped<ITenantService, TenantService>();
-            builder.Services.AddScoped<IYarpConfigService, YarpConfigService>();
-            builder.Services.AddScoped<ITenantHealthService, TenantHealthService>();
+            builder.Services.AddScoped<IReleaseService, ReleaseService>();
+            builder.Services.AddScoped<IManagerService, ManagerService>();
+            builder.Services.AddScoped<IJwtService, JwtService>();
 
             var app = builder.Build();
 

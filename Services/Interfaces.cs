@@ -2,42 +2,54 @@
 {
     using Demodeck.Tenant.Api.Models;
 
+    // Simplified Tenant Repository Interface
     public interface ITenantRepository
     {
-        Task<GlobalTenant?> GetTenantByIdAsync(string tenantId);
-        Task<GlobalTenant?> GetTenantByNameAsync(string tenantName);
-        Task<List<GlobalTenant>> GetAllTenantsAsync();
-        Task<List<GlobalTenant>> GetTenantsByRegionAsync(string region);
-        Task<bool> CreateTenantAsync(GlobalTenant tenant);
-        Task<bool> UpdateTenantAsync(GlobalTenant tenant);
-        Task<bool> DeleteTenantAsync(string tenantId);
+        Task<List<TenantDto>> GetAllTenantsAsync();
+        Task<TenantDto?> GetTenantByNameAsync(string tenantName);
     }
 
-    public interface IRegionRepository
+    // Release Repository Interface
+    public interface IReleaseRepository
     {
-        Task<Region?> GetRegionByIdAsync(string regionId);
-        Task<List<Region>> GetAllActiveRegionsAsync();
-        Task<bool> UpdateRegionMetricsAsync(string regionId, Dictionary<string, object> metrics);
+        Task<List<Release>> GetAllReleasesAsync();
+        Task<Release> CreateReleaseAsync(Release release);
+        Task<Release?> UpdateReleaseAsync(Release release);
     }
 
+    // Manager Repository Interface
+    public interface IManagerRepository
+    {
+        Task<List<Manager>> GetAllManagersAsync();
+        Task<Manager?> GetManagerByUsernameAsync(string username);
+        Task<bool> ValidatePasswordAsync(Manager manager, string password);
+    }
+
+    // Simplified Tenant Service Interface
     public interface ITenantService
     {
-        Task<TenantRoutingInfo?> GetTenantRoutingInfoAsync(string tenantName);
-        Task<List<TenantRoutingInfo>> GetAllTenantRoutingInfoAsync(string? region = null);
-        Task<bool> UpdateTenantVersionAsync(UpdateTenantVersionRequest request);
-        Task<GlobalTenant?> CreateTenantAsync(CreateTenantRequest request);
+        Task<List<TenantDto>> GetAllTenantsAsync();
+        Task<TenantDto?> GetTenantByNameAsync(string tenantName);
     }
 
-    public interface IYarpConfigService
+    // Release Service Interface
+    public interface IReleaseService
     {
-        Task<YarpConfiguration> GenerateYarpConfigAsync(string region);
-        Task<YarpConfiguration> GenerateGlobalYarpConfigAsync();
+        Task<List<Release>> GetAllReleasesAsync();
+        Task<Release> CreateReleaseAsync(Release release);
+        Task<Release?> UpdateReleaseAsync(Release release);
     }
 
-    public interface ITenantHealthService
+    // Manager Service Interface
+    public interface IManagerService
     {
-        Task<Dictionary<string, object>> GetTenantHealthAsync(string tenantId, string region);
-        Task<Dictionary<string, object>> GetRegionHealthAsync(string region);
-        Task UpdateTenantHealthAsync(string tenantId, string region, Dictionary<string, object> healthData);
+        Task<List<Manager>> GetAllManagersAsync();
+        Task<Manager?> ValidateCredentialsAsync(string username, string password);
+    }
+
+    // JWT Service Interface
+    public interface IJwtService
+    {
+        string GenerateToken(Manager manager);
     }
 }
