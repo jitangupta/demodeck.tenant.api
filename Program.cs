@@ -18,6 +18,25 @@ namespace Demodeck.Tenant.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            // Configure CORS
+            var corsAllowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? new[] { "http://localhost:8085" };
+            var corsAllowCredentials = builder.Configuration.GetValue<bool>("Cors:AllowCredentials", true);
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.WithOrigins(corsAllowedOrigins)
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+
+                    if (corsAllowCredentials)
+                    {
+                        policy.AllowCredentials();
+                    }
+                });
+            });
+
             // Configure JWT Settings
             var jwtSettings = new JwtSettings
             {
@@ -64,6 +83,7 @@ namespace Demodeck.Tenant.Api
             }
 
             app.UseHttpsRedirection();
+            app.UseCors();
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
