@@ -25,6 +25,8 @@
                     ServiceName = "acme-v1-1-service",
                     IsHealthy = true,
                     CreatedAt = DateTime.UtcNow.AddMonths(-6),
+                    LogoUrl = "/logos/acme-logo.png",
+                    ThemeColor = "#dc2626",
                     CustomHeaders = new Dictionary<string, string>
                     {
                         ["X-Tenant-Id"] = "tnt_acme001",
@@ -42,6 +44,8 @@
                     ServiceName = "globalx-v1-0-service",
                     IsHealthy = true,
                     CreatedAt = DateTime.UtcNow.AddMonths(-4),
+                    LogoUrl = "/logos/globalx-logo.png",
+                    ThemeColor = "#0b1eb1",
                     CustomHeaders = new Dictionary<string, string>
                     {
                         ["X-Tenant-Id"] = "tnt_globalx001",
@@ -59,6 +63,8 @@
                     ServiceName = "initech-v1-2-service",
                     IsHealthy = false,
                     CreatedAt = DateTime.UtcNow.AddMonths(-2),
+                    LogoUrl = "/logos/initech-logo.png",
+                    ThemeColor = "#0d7a20",
                     CustomHeaders = new Dictionary<string, string>
                     {
                         ["X-Tenant-Id"] = "tnt_initech001",
@@ -76,6 +82,8 @@
                     ServiceName = "umbrella-v2-0-service",
                     IsHealthy = true,
                     CreatedAt = DateTime.UtcNow.AddDays(-30),
+                    LogoUrl = "/logos/umbrella-logo.png",
+                    ThemeColor = "#d3850b",
                     CustomHeaders = new Dictionary<string, string>
                     {
                         ["X-Tenant-Id"] = "tnt_umbrella001",

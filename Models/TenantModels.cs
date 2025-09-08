@@ -10,6 +10,10 @@
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public string PrimaryRegion { get; set; } = string.Empty;
         public string CurrentVersion { get; set; } = string.Empty;
+        
+        // UI Customization fields
+        public string LogoUrl { get; set; } = string.Empty;
+        public string ThemeColor { get; set; } = string.Empty;
 
         // YARP routing info (embedded in tenant response)
         public string ServiceName { get; set; } = string.Empty;
