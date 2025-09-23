@@ -10,7 +10,7 @@
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public string PrimaryRegion { get; set; } = string.Empty;
         public string CurrentVersion { get; set; } = string.Empty;
-        
+
         // UI Customization fields
         public string LogoUrl { get; set; } = string.Empty;
         public string ThemeColor { get; set; } = string.Empty;
@@ -19,6 +19,10 @@
         public string ServiceName { get; set; } = string.Empty;
         public bool IsHealthy { get; set; } = true;
         public Dictionary<string, string> CustomHeaders { get; set; } = new();
+
+        // APIs
+        public string AuthAPI { get; set; } = "";
+        public string ProductAPI { get; set; } = "";
     }
 
     // Release Management Model
@@ -76,5 +80,12 @@
         public string Issuer { get; set; } = string.Empty;
         public string Audience { get; set; } = string.Empty;
         public int TokenLifetimeMinutes { get; set; } = 60;
+    }
+
+    // API Endpoints Configuration
+    public class ApiEndpointsSettings
+    {
+        public string AuthAPI { get; set; } = string.Empty;
+        public string ProductAPI { get; set; } = string.Empty;
     }
 }

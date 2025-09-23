@@ -1,13 +1,16 @@
 ﻿namespace Demodeck.Tenant.Api.Services
 {
     using Demodeck.Tenant.Api.Models;
+    using Microsoft.Extensions.Options;
 
     public class InMemoryTenantRepository : ITenantRepository
     {
         private readonly List<TenantDto> _tenants = new();
+        private readonly ApiEndpointsSettings _apiEndpoints;
 
-        public InMemoryTenantRepository()
+        public InMemoryTenantRepository(IOptions<ApiEndpointsSettings> apiEndpoints)
         {
+            _apiEndpoints = apiEndpoints.Value;
             SeedData();
         }
 
@@ -103,6 +106,9 @@
         {
             var tenant = _tenants.FirstOrDefault(t => 
                 t.TenantName.Equals(tenantName, StringComparison.OrdinalIgnoreCase) && t.IsActive);
+
+            tenant.AuthAPI = _apiEndpoints.AuthAPI;
+            tenant.ProductAPI = _apiEndpoints.ProductAPI;
             return Task.FromResult(tenant);
         }
     }

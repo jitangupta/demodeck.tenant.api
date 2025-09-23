@@ -47,6 +47,10 @@ namespace Demodeck.Tenant.Api
             };
             builder.Services.AddSingleton(jwtSettings);
 
+            // Configure API Endpoints
+            builder.Services.Configure<ApiEndpointsSettings>(
+                builder.Configuration.GetSection("ApiEndpoints"));
+
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
