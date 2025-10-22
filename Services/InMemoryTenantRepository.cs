@@ -24,7 +24,7 @@
                     TenantName = "acme",
                     DisplayName = "Acme Corporation",
                     PrimaryRegion = "eastus",
-                    CurrentVersion = "1.1",
+                    CurrentVersion = "2.1.0",
                     ServiceName = "acme-v1-1-service",
                     IsHealthy = true,
                     CreatedAt = DateTime.UtcNow.AddMonths(-6),
@@ -33,7 +33,7 @@
                     CustomHeaders = new Dictionary<string, string>
                     {
                         ["X-Tenant-Id"] = "tnt_acme001",
-                        ["X-Tenant-Version"] = "1.1",
+                        ["X-Tenant-Version"] = "2.1.0",
                         ["X-Tenant-Tier"] = "Enterprise"
                     }
                 },
@@ -43,7 +43,7 @@
                     TenantName = "globalx",
                     DisplayName = "GlobalX Industries",
                     PrimaryRegion = "westus",
-                    CurrentVersion = "1.0",
+                    CurrentVersion = "2.1.0",
                     ServiceName = "globalx-v1-0-service",
                     IsHealthy = true,
                     CreatedAt = DateTime.UtcNow.AddMonths(-4),
@@ -52,7 +52,7 @@
                     CustomHeaders = new Dictionary<string, string>
                     {
                         ["X-Tenant-Id"] = "tnt_globalx001",
-                        ["X-Tenant-Version"] = "1.0",
+                        ["X-Tenant-Version"] = "2.1.0",
                         ["X-Tenant-Tier"] = "Standard"
                     }
                 },
@@ -62,7 +62,7 @@
                     TenantName = "initech",
                     DisplayName = "Initech LLC",
                     PrimaryRegion = "centralus",
-                    CurrentVersion = "1.2",
+                    CurrentVersion = "2.0.0",
                     ServiceName = "initech-v1-2-service",
                     IsHealthy = false,
                     CreatedAt = DateTime.UtcNow.AddMonths(-2),
@@ -71,7 +71,7 @@
                     CustomHeaders = new Dictionary<string, string>
                     {
                         ["X-Tenant-Id"] = "tnt_initech001",
-                        ["X-Tenant-Version"] = "1.2",
+                        ["X-Tenant-Version"] = "2.0.0",
                         ["X-Tenant-Tier"] = "Premium"
                     }
                 },
@@ -81,7 +81,7 @@
                     TenantName = "umbrella",
                     DisplayName = "Umbrella Corp",
                     PrimaryRegion = "westeurope",
-                    CurrentVersion = "2.0",
+                    CurrentVersion = "2.0.0",
                     ServiceName = "umbrella-v2-0-service",
                     IsHealthy = true,
                     CreatedAt = DateTime.UtcNow.AddDays(-30),
@@ -90,7 +90,7 @@
                     CustomHeaders = new Dictionary<string, string>
                     {
                         ["X-Tenant-Id"] = "tnt_umbrella001",
-                        ["X-Tenant-Version"] = "2.0",
+                        ["X-Tenant-Version"] = "2.0.0",
                         ["X-Tenant-Tier"] = "Enterprise"
                     }
                 }

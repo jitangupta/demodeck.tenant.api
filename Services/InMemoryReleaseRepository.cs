@@ -19,40 +19,50 @@
                 {
                     Id = "rel_001",
                     ReleaseName = "Genesis Release",
-                    ReleaseVersion = "1.0",
-                    AuthApiVersion = "1.0",
-                    ProductApiVersion = "1.0", 
-                    UiAppVersion = "1.0",
+                    ReleaseVersion = "1.0.0",
+                    AuthApiVersion = "1.0.0",
+                    ProductApiVersion = "1.0.0", 
+                    UiAppVersion = "1.0.0",
                     CreatedDate = DateTime.UtcNow.AddDays(-45)
                 },
                 new Release
                 {
                     Id = "rel_002",
                     ReleaseName = "Feature Enhancement",
-                    ReleaseVersion = "1.1",
-                    AuthApiVersion = "1.1",
-                    ProductApiVersion = "1.1",
-                    UiAppVersion = "1.1", 
+                    ReleaseVersion = "1.1.0",
+                    AuthApiVersion = "1.1.0",
+                    ProductApiVersion = "1.1.0",
+                    UiAppVersion = "1.1.0", 
                     CreatedDate = DateTime.UtcNow.AddDays(-30)
                 },
                 new Release
                 {
                     Id = "rel_003",
                     ReleaseName = "Performance Boost",
-                    ReleaseVersion = "1.2",
-                    AuthApiVersion = "1.2",
-                    ProductApiVersion = "1.2",
-                    UiAppVersion = "1.2", 
+                    ReleaseVersion = "1.2.0",
+                    AuthApiVersion = "1.2.0",
+                    ProductApiVersion = "1.2.0",
+                    UiAppVersion = "1.2.0", 
                     CreatedDate = DateTime.UtcNow.AddDays(-15)
                 },
                 new Release
                 {
                     Id = "rel_004",
-                    ReleaseName = "Major Update",
-                    ReleaseVersion = "2.0",
-                    AuthApiVersion = "2.0",
-                    ProductApiVersion = "2.0",
-                    UiAppVersion = "2.0", 
+                    ReleaseName = "Yarp Implementation",
+                    ReleaseVersion = "2.0.0",
+                    AuthApiVersion = "2.0.0",
+                    ProductApiVersion = "2.0.0",
+                    UiAppVersion = "2.0.0", 
+                    CreatedDate = DateTime.UtcNow.AddDays(-7)
+                },
+                new Release
+                {
+                    Id = "rel_005",
+                    ReleaseName = "Task Feature Update",
+                    ReleaseVersion = "2.1.0",
+                    AuthApiVersion = "2.1.0",
+                    ProductApiVersion = "2.1.0",
+                    UiAppVersion = "2.1.0",
                     CreatedDate = DateTime.UtcNow.AddDays(-7)
                 }
             });
