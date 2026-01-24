@@ -3,6 +3,8 @@ using Demodeck.Tenant.Api.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 
 namespace Demodeck.Tenant.Api
 {
@@ -76,6 +78,28 @@ namespace Demodeck.Tenant.Api
             builder.Services.AddScoped<IReleaseService, ReleaseService>();
             builder.Services.AddScoped<IManagerService, ManagerService>();
             builder.Services.AddScoped<IJwtService, JwtService>();
+
+            // OpenTelemetry Tracing
+            builder.Services.AddOpenTelemetry()
+                .ConfigureResource(resource => resource
+                    .AddService(serviceName: "tenant-api", serviceVersion: "1.0.0")
+                    .AddAttributes(new Dictionary<string, object>
+                    {
+                        ["deployment.environment"] = builder.Environment.EnvironmentName,
+                        ["service.namespace"] = "demodeck"
+                    }))
+                .WithTracing(tracing => tracing
+                    .AddAspNetCoreInstrumentation(opts =>
+                    {
+                        opts.RecordException = true;
+                        opts.Filter = ctx => !ctx.Request.Path.StartsWithSegments("/health");
+                    })
+                    .AddHttpClientInstrumentation(opts => opts.RecordException = true)
+                    .AddOtlpExporter(opts =>
+                    {
+                        opts.Endpoint = new Uri(builder.Configuration["OpenTelemetry:OtlpEndpoint"]
+                            ?? "http://tempo.observability.svc.cluster.local:4317");
+                    }));
 
             var app = builder.Build();
 
